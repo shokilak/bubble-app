@@ -7,6 +7,6 @@ export class AppController {
 
   @Get('/profile')
   getProfile() {
-    return 'PROFILE PAGE' //this.appService.getProfile()
+    return 'PROFILE PAGE'; //this.appService.getProfile()
   }
 }

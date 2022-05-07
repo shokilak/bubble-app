@@ -1,50 +1,50 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity('userInfo')
 export class UserInfoEntity {
   @PrimaryGeneratedColumn()
-  id: number
+  id: number;
 
   @Column({
     type: 'character varying',
-    length: 24
+    length: 24,
   })
-  second_name: string
+  second_name: string;
 
   @Column({
     type: 'character varying',
-    length: 24
+    length: 24,
   })
-  third_name: string
+  third_name: string;
 
   @Column({
-    type: "boolean"
+    type: 'boolean',
   })
-  subscription: boolean
+  subscription: boolean;
 
   @Column({
-    type: "date"
+    type: 'date',
   })
-  subscription_expires: Date
+  subscription_expires: Date;
 
   @Column('int')
-  searchGoal: number
+  searchGoal: number;
 
   @Column('character varying')
-  workPlace: string
+  workPlace: string;
 
   @Column('character varying')
-  studyPlace: string
+  studyPlace: string;
 
   // @ManyToMany(() => TagEntity)
   // @JoinTable()
   // tags: TagEntity[]
 
-  @Column("int")
-  height: number
+  @Column('int')
+  height: number;
 
-  @Column("int")
-  weight: number
+  @Column('int')
+  weight: number;
 
   // @Column("character varying")
   // children:
