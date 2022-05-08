@@ -13,13 +13,15 @@ import { RegisterUserDto } from './dto/register-user.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { UserRepository } from '../user/user.repository';
 import {
+  ApiBody,
   ApiForbiddenResponse,
   ApiNotAcceptableResponse,
   ApiNotFoundResponse,
   ApiOkResponse,
   ApiTags,
-  ApiUnauthorizedResponse,
-} from '@nestjs/swagger';
+  ApiUnauthorizedResponse
+} from "@nestjs/swagger";
+import { LoginDto } from "./dto/login.dto";
 
 @Controller('auth')
 export class AuthController {
@@ -55,6 +57,7 @@ export class AuthController {
   @ApiNotFoundResponse({ description: 'User did not found' })
   @ApiUnauthorizedResponse({ description: 'Bad auth data. Not accessed' })
   @UseGuards(AuthGuard('local'))
+  @ApiBody({type: LoginDto})
   @Post('login')
   login(@Request() req) {
     return this.authService.login(req.user);
