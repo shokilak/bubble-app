@@ -14,4 +14,8 @@ export class TimedCodeRepository extends Repository<TimedCodeEntity> {
       .where('timedCode.botCode = :botCode', {botCode:botCode})
       .getOne()
   }
+
+  createNew(codes): Promise<TimedCodeEntity> {
+    return this.save(codes)
+  }
 }

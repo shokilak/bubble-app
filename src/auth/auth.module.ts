@@ -9,13 +9,17 @@ import { JwtModule } from '@nestjs/jwt';
 import { jwtConstants } from '../../config/jwt.constants';
 import { LocalStrategy } from './strategies/local.strategy';
 import { JwtStrategy } from './strategies/jwt.strategy';
+import { TimedCodeRepository } from "./timedCode.repository";
 
 @Module({
   imports: [
     UserModule,
     PassportModule,
 
-    TypeOrmModule.forFeature([UserRepository]),
+    TypeOrmModule.forFeature([
+      UserRepository,
+      TimedCodeRepository
+    ]),
 
     JwtModule.register({
       secret: jwtConstants.secret,
