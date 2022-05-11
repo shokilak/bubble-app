@@ -85,14 +85,16 @@ export class AuthController {
   @Post('check-clientCode')
   async checkClientCode(@Body() body: CheckClientCodeDto){
     const clientCode = await this.authService.checkClientCode(body.clientCode)
-    if (!clientCode) throw new NotFoundException({message: 'Client code did not found'})
+    if (!clientCode) return false
+      // throw new NotFoundException({message: 'Client code did not found'})
+    return clientCode;
   }
 
   @Post('check-botCode')
   async checkBotCode(@Body() body: CheckBotCodeDto){
     const botCode = await this.authService.checkBotCode(body.botCode)
-    if (!botCode) throw new NotFoundException({message: 'Bot code did not found'})
-
+    if (!botCode) return false
+      // throw new NotFoundException({message: 'Bot code did not found'})
     return true
   }
 
