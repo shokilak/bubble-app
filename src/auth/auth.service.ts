@@ -1,9 +1,7 @@
 import * as bcrypt from 'bcrypt';
 
 import {
-  ForbiddenException,
   Injectable,
-  NotAcceptableException,
   NotFoundException,
 } from '@nestjs/common';
 import { UserService } from '../user/user.service';
@@ -12,7 +10,9 @@ import { UserRepository } from '../user/user.repository';
 import { JwtService } from '@nestjs/jwt';
 import { RegisterUserDto } from './dto/register-user.dto';
 import { UserEntity } from '../user/entities/user.entity';
-import { retry } from 'rxjs';
+
+import * as generate from 'generate-password'
+import { TimedCodeRepository } from "./timedCode.repository";
 
 @Injectable()
 export class AuthService {
@@ -22,6 +22,9 @@ export class AuthService {
 
     @InjectRepository(UserRepository)
     private readonly userRepository: UserRepository,
+
+    @InjectRepository(TimedCodeRepository)
+    private readonly timedCodeRepository: TimedCodeRepository
   ) {}
 
   async sendVerificationCode(phoneNumber: string) {
@@ -80,6 +83,25 @@ export class AuthService {
     return {
       access_token: this.jwtService.sign(payload),
     };
+  }
+
+  async loginWithTelegram(): Promise<string> {
+    const clientCode = generate.generate({length: 8, numbers: true})
+    const botCode = generate.generate({length: 8, numbers: true})
+    const codes = {
+      clientCode: clientCode,
+      botCode: botCode
+    }
+    await this.timedCodeRepository.createNew(codes)
+    return clientCode;
+  }
+
+  checkClientCode(clientCode: string) {
+    return this.timedCodeRepository.findByClientCode(clientCode)
+  }
+
+  checkBotCode(botCode: string) {
+    return this.timedCodeRepository.findByBotCode(botCode)
   }
 
   recovery() {}
