@@ -9,13 +9,19 @@ export class UserInfoEntity {
     type: 'character varying',
     length: 24,
   })
-  second_name: string;
+  secondName: string;
 
   @Column({
     type: 'character varying',
     length: 24,
   })
-  third_name: string;
+  thirdName: string;
+
+  @Column({
+    type: "character varying",
+    length: 128
+  })
+  description: string
 
   @Column({
     type: 'boolean',
@@ -27,8 +33,8 @@ export class UserInfoEntity {
   })
   subscription_expires: Date;
 
-  @Column('int')
-  searchGoal: number;
+  @Column('character varying')
+  searchGoal: string;
 
   @Column('character varying')
   workPlace: string;
@@ -46,8 +52,8 @@ export class UserInfoEntity {
   @Column('int')
   weight: number;
 
-  // @Column("character varying")
-  // children:
+  @Column("character varying")
+  children: string
 
   // @Column('character varying')
   // sexOrientation: //todo sex orientation

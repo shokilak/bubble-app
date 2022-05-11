@@ -68,10 +68,11 @@ export class AuthController {
   @ApiOkResponse({ description: 'Success login' })
   @ApiNotFoundResponse({ description: 'User did not found' })
   @ApiUnauthorizedResponse({ description: 'Bad auth data. Not accessed' })
-  @UseGuards(AuthGuard('local'))
   @ApiBody({type: LoginDto})
+  @UseGuards(AuthGuard('local'))
   @Post('login')
   login(@Request() req) {
+    console.log(req.user)
     return this.authService.login(req.user);
   }
 
