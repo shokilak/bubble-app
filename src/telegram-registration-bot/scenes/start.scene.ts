@@ -23,10 +23,10 @@ export class StartScene {
     await ctx.scene.enter('registration')
   }
 
-  @Hears('💬 Задать вопрос 💬')
-  async createQuestion(ctx: Scenes.SceneContext) {
-    await ctx.scene.enter('createQuestion')
-  }
+  // @Hears('💬 Задать вопрос 💬')
+  // async createQuestion(ctx: Scenes.SceneContext) {
+  //   await ctx.scene.enter('createQuestion')
+  // }
 
   @Hears('🌐 О боте 🌐')
   async about(ctx) {
