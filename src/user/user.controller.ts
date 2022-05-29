@@ -9,4 +9,16 @@ export class UserController {
   async updateProfileInfo(@Body() body: UpdateProfileInfoDto) {
 
   }
+
+  @ApiTags('User')
+  @Post('/add-tag')
+  addTag() {
+
+  }
+
+  @ApiTags('User')
+  @Post('/delete-tag')
+  deleteTag() {
+
+  }
 }

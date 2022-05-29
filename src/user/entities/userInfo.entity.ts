@@ -42,9 +42,8 @@ export class UserInfoEntity {
   @Column('character varying')
   studyPlace: string;
 
-  // @ManyToMany(() => TagEntity)
-  // @JoinTable()
-  // tags: TagEntity[]
+  @Column({type: "array"})
+  tags: Array<number>
 
   @Column('int')
   height: number;
@@ -55,6 +54,6 @@ export class UserInfoEntity {
   @Column("character varying")
   children: string
 
-  // @Column('character varying')
-  // sexOrientation: //todo sex orientation
+  @Column('character varying')
+  sexOrientation: string
 }
