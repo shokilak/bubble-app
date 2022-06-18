@@ -46,4 +46,10 @@ export class UserEntity {
     type: 'date',
   })
   createdAt: Date;
+
+  @Column({
+    type: "boolean",
+    default: false
+  })
+  banFlag: boolean
 }
