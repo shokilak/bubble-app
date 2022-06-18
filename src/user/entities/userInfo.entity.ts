@@ -42,8 +42,8 @@ export class UserInfoEntity {
   @Column('character varying')
   studyPlace: string;
 
-  @Column({type: "array"})
-  tags: Array<number>
+  @Column({type: "int", array: true})
+  tags: number
 
   @Column('int')
   height: number;
