@@ -7,6 +7,8 @@ import {UserModule} from "../src/user/user.module";
 import { TelegrafModule } from "nestjs-telegraf";
 import { TelegramRegistrationBotModule } from "../src/telegram-registration-bot/telegram-registration-bot.module";
 import { SessionMiddleware } from "../src/telegram-registration-bot/middlewares/session.middleware";
+import { TagModule } from "../src/tag/tag.module";
+import { ChatModule } from "../src/chat/chat.module";
 
 export const ModuleImport = [
     TypeOrmModule.forRootAsync({useClass: TypeOrmConfig}),
@@ -25,5 +27,7 @@ export const ModuleImport = [
 
     AuthModule,
     UserModule,
-    TelegramRegistrationBotModule
+    TelegramRegistrationBotModule,
+    TagModule,
+    ChatModule
 ]
